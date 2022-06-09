@@ -45,15 +45,15 @@ shadowsocks_passwd="$(pwgen -1cnys -r "'\";:$\\" 16)"
 
 # 5.Gunakan WS untuk mengonfigurasi protokol vless, trojan, socks, shadowsocks
 # 分别随机生成vless,trojan,socks,shadowsocks需要使用的ws的path
-vless_ws_path="/`pwgen -csn 6 8 | xargs |sed 's/ /\//g'`"
-trojan_ws_path="/`pwgen -csn 6 8 | xargs |sed 's/ /\//g'`"
+vless_ws_path="/vlesswsssn"
+trojan_ws_path="/trojanwsssn"
 socks_ws_path="/`pwgen -csn 6 8 | xargs |sed 's/ /\//g'`"
 shadowsocks_ws_path="/`pwgen -csn 6 8 | xargs |sed 's/ /\//g'`"
 
 # 6.Gunakan GRPC untuk mengonfigurasi protokol vless, trojan, socks, shadowsocks
 # 分别随机生成vless,trojan,socks,shadowsocks需要使用的grpc的path
-vless_grpc_path="$(pwgen -1scn 12)$(pwgen -1scny -r "\!@#$%^&*()-+={}[]|:\";',/?><\`~" 36)"
-trojan_grpc_path="$(pwgen -1scn 12)$(pwgen -1scny -r "\!@#$%^&*()-+={}[]|:\";',/?><\`~" 36)"
+vless_grpc_path="/vlessgrpcssn"
+trojan_grpc_path="/trojangrpcssn"
 socks_grpc_path="$(pwgen -1scn 12)$(pwgen -1scny -r "\!@#$%^&*()-+={}[]|:\";',/?><\`~" 36)"
 shadowsocks_grpc_path="$(pwgen -1scn 12)$(pwgen -1scny -r "\!@#$%^&*()-+={}[]|:\";',/?><\`~" 36)"
 
