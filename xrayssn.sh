@@ -424,10 +424,10 @@ systemctl status xray
 /usr/sbin/nginx -t && systemctl restart nginx
 
 
-# 输出配置信息并保存到文件
+# Keluarkan informasi konfigurasi dan simpan ke file
 xray_config_info="/root/xray_config.info"
 echo "
------------ 所有连接方式统一域名和端口 -----------
+----------- Nama domain dan port terpadu untuk semua metode koneksi -----------
 Domain	 : $domainName
 Port	 : 443
 ------------- WS传输 ------------
