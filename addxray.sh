@@ -35,11 +35,11 @@ until [[ $user =~ ^[a-zA-Z0-9_]+$ && ${user_EXISTS} == '0' ]]; do
 uuid=$(cat /proc/sys/kernel/random/uuid)
 read -p "Expired (Days) : " masaaktif
 read -p "SNI (bug) : " sni
-read -p "Subdomain (EXP : manternet.xyz. / Press Enter If Only Using Hosts) : " sub
+read -p "Subdomain (EXP : ssnvpn.my.id. / Press Enter If Only Using Hosts) : " sub
 dom=$sub$domain
 hariini=`date -d "0 days" +"%Y-%m-%d"`
 exp=`date -d "$masaaktif days" +"%Y-%m-%d"`
-sed -i '/#xray-trojan-grpc$/a\#&# '"$user $exp"'\
+sed -i '/#xray-ssn$/a\#&# '"$user $exp"'\
 },{"password": "'""$uuid""'","email": "'""$user""'"' /usr/local/etc/xray/config.json
 
 trojanlink1="trojan://$uuid@$dom:${tr}?mode=gun&security=tls&type=grpc&serviceName=GunService&sni=${sni}#${user}"
