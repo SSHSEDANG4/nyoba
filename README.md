@@ -11,3 +11,9 @@ wget https://raw.githubusercontent.com/SSHSEDANG4/nyoba/main/cf.sh && chmod +x c
  ```shell
 wget https://raw.githubusercontent.com/SSHSEDANG4/nyoba/main/xrayssn.sh && chmod +x xrayssn.sh && ./xrayssn.sh
   ```
+  
+  Notes :
+  
+   ```shell
+  https://raw.githubusercontent.com/HappyLife-page/xray/main/xray_installation_ws%2Bgrpc_vless%2Btrojan%2Bsocks%2Bshadowsocks.sh
+   ```
