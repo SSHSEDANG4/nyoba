@@ -7,33 +7,31 @@
 # Eg  : bash xray_installation_ws+grpc_vless+trojan+socks+shadowsocks.sh "你的域名"
 
 if [ -z "$1" ];then
-	echo "域名不能为空"
+	echo "Domain Tidak Boleh Kosong"
 	exit
 fi
 
-# 配置系统时区为东八区,并设置时间为24H制
-ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
-if ! grep -q 'LC_TIME' /etc/default/locale;then echo 'LC_TIME=en_DK.UTF-8' >> /etc/default/locale;fi
+# Konfigurasikan zona waktu sistem sebagai Jakarta/Indonesia.
+ln -fs /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
 
-
-# 更新Ubuntu官方源，使用ubuntu官方源安装nginx和依赖包并设置开机启动，关闭防火墙ufw
+# Perbarui sumber resmi Ubuntu, instal nginx dan paket dependen menggunakan sumber resmi ubuntu dan atur boot untuk memulai, tutup firewall ufw.
 apt clean all && apt update
 apt install nginx curl pwgen openssl netcat cron -y
 systemctl enable nginx
 ufw disable
 
 
-# 开始部署之前，我们先配置一下需要用到的参数，如下：
+# Sebelum memulai penerapan, mari kita konfigurasikan parameter yang perlu digunakan, sebagai berikut:
 # "域名，uuid，ws和grpc路径，domainSock目录，ssl证书目录"
 
-# 1.设置你的解析好的域名
+# 1.Siapkan nama domain Anda yang telah diselesaikan.
 domainName=$(cat /etc/xray/domain)
 host=$(cat /etc/xray/domain)
 
-# 2.随机生成一个uuid
+# 2.Secara acak menghasilkan uuid.
 uuid="`uuidgen`"
 
-# 3.分别随机生成socks和shadowsocks需要用到的服务端口
+# 3.Buat port layanan secara acak yang perlu digunakan oleh socks dan shadowsocks.
 socks_ws_port="`shuf -i 20000-30000 -n 1`"
 shadowsocks_ws_port="`shuf -i 30001-40000 -n 1`"
 socks_grpc_port="`shuf -i 40001-50000 -n 1`"
@@ -69,7 +67,7 @@ trojan_ws_domainSock="${domainSock_dir}/trojan_ws.sock"
 vless_grpc_domainSock="${domainSock_dir}/vless_grpc.sock"
 trojan_grpc_domainSock="${domainSock_dir}/trojan_grpc.sock"
 
-# 9.以时间为基准随机创建一个存放ssl证书的目录
+# 9.Buat direktori secara acak untuk menyimpan sertifikat ssl berdasarkan waktu.
 ssl_dir="$(mkdir -pv "/etc/nginx/ssl/`date +"%F-%H-%M-%S"`" |awk -F"'" END'{print $2}')"
 
 
@@ -86,7 +84,7 @@ if ! [ -d /root/.acme.sh ];then curl https://get.acme.sh | sh;fi
 ~/.acme.sh/acme.sh --installcert -d "$domainName" --fullchainpath $ssl_dir/xray.crt --keypath $ssl_dir/xray.key --ecc
 chown www-data.www-data $ssl_dir/xray.*
 
-## 把续签证书命令添加到计划任务
+## Tambahkan Perintah Perbarui Sertifikat ke Tugas Terjadwal.
 echo -n '#!/bin/bash
 /etc/init.d/nginx stop
 "/root/.acme.sh"/acme.sh --cron --home "/root/.acme.sh" &> /root/renew_ssl.log
@@ -430,45 +428,45 @@ systemctl status xray
 xray_config_info="/root/xray_config.info"
 echo "
 ----------- 所有连接方式统一域名和端口 -----------
-Domain	: $domainName
-Port	: 443
+Domain	 : $domainName
+Port	 : 443
 ------------- WS传输 ------------
 -----------1. vless+ws -----------
-协议	: vless
-UUID	: $uuid
-Path	: $vless_ws_path
+Protokol : vless
+UUID	 : $uuid
+Path	 : $vless_ws_path
 -----------2. trojan+ws -----------
-协议	: trojan
-密码	: $trojan_passwd
-路径	: $trojan_ws_path
+Protokol : trojan
+Password : $trojan_passwd
+Path     : $trojan_ws_path
 -----------3. socks+ws ------------
-协议	: socks
-用户	：$socks_user	
-密码	: $socks_passwd
-路径	: $socks_ws_path
+Protokol : socks
+Username ：$socks_user	
+Password : $socks_passwd
+Path	 : $socks_ws_path
 -------- 4. shadowsocks+ws ---------
-协议	: shadowsocks
-密码	: $shadowsocks_passwd
-加密	：AES-128-GCM
-路径	: $shadowsocks_ws_path
+Protokol : shadowsocks
+Password : $shadowsocks_passwd
+Enkripsi ：AES-128-GCM
+Path	 : $shadowsocks_ws_path
 
 ------------ gRPC传输 -----------
 ------------5. vless+grpc -----------
-协议	: vless
-UUID	: $uuid
-路径	: $vless_grpc_path
+Protokol : vless
+UUID	 : $uuid
+Path	 : $vless_grpc_path
 -----------6. trojan+grpc -----------
-协议	: trojan
-密码	: $trojan_passwd
-路径	: $trojan_grpc_path
+Protokol : trojan
+Password : $trojan_passwd
+Path	 : $trojan_grpc_path
 -----------7. socks+grpc ------------
-协议	: socks
-用户  ：$socks_user
-密码	: $socks_passwd
-路径	: $socks_grpc_path
+Protokol : socks
+Username ：$socks_user
+Password : $socks_passwd
+Path	 : $socks_grpc_path
 --------8. shadowsocks+grpc ---------
-协议	: shadowsocks
-密码	: $shadowsocks_passwd
-加密	：AES-128-GCM
-路径	: $shadowsocks_grpc_path
+Protokol : shadowsocks
+Password : $shadowsocks_passwd
+Enkripsi ：AES-128-GCM
+Path	 : $shadowsocks_grpc_path
 " | tee $xray_config_info
