@@ -1,5 +1,5 @@
 #!/bin/bash
-# Auth: happylife
+# Auth: happylife YES
 # Desc: xray installation script
 # 	    ws+vless,ws+trojan,ws+socks,ws+shadowsocks
 #	      grpc+vless,grpc+trojan,grpc+socks,grpc+shadowsocks
