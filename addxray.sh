@@ -43,12 +43,14 @@ sed -i '/#xray-ssn$/a\#&# '"$user $exp"'\
 },{"password": "'""$uuid""'","email": "'""$user""'"' /usr/local/etc/xray/config.json
 
 trojanlink1="trojan://$uuid@$dom:${tr}?mode=gun&security=tls&type=grpc&serviceName=GunService&sni=${sni}#${user}"
-systemctl restart trojangrpc.service
-service cron restart
+systemctl restart xray
+systemctl status xray
+/usr/sbin/nginx -t && systemctl restart nginx
+
 clear
 echo -e ""
 echo -e "================================="
-echo -e "        XRAY TROJAN GRPC        "
+echo -e "         XRAY XRAY TOD        "
 echo -e "================================="
 echo -e "Remarks        : ${user}"
 echo -e "IP             : ${MYIP}"
