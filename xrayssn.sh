@@ -6,12 +6,7 @@
 # Plat: ubuntu 18.04+
 # Eg  : bash xray_installation_ws+grpc_vless+trojan+socks+shadowsocks.sh "你的域名"
 
-domain=$(cat /etc/xray/domain)
 IP=$( curl -s ipinfo.io/ip)
-if [ -f "/etc/xray/domain" ]; then
-echo "Script Already Installed"
-exit 0
-fi
 
 mkdir /var/lib/ssn;
 echo "IP=" >> /var/lib/ssn/ipvps.conf
