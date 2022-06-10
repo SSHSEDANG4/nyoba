@@ -12,11 +12,6 @@ mkdir /var/lib/ssn;
 echo "IP=" >> /var/lib/ssn/ipvps.conf
 echo "IP=$( curl -s ipinfo.io/ip)" >> /var/lib/ssn/ipvps.conf
 
-if [ -z "$1" ];then
-	echo "Domain Tidak Boleh Kosong"
-	exit
-fi
-
 # Konfigurasikan zona waktu sistem sebagai Jakarta/Indonesia.
 ln -fs /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
 
