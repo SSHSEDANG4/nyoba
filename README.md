@@ -12,6 +12,12 @@ wget https://raw.githubusercontent.com/SSHSEDANG4/nyoba/main/cf.sh && chmod +x c
 wget https://raw.githubusercontent.com/SSHSEDANG4/nyoba/main/xrayssn.sh && chmod +x xrayssn.sh && ./xrayssn.sh
   ```
   
+ Tambah User
+ 
+ ```shell
+wget https://raw.githubusercontent.com/SSHSEDANG4/nyoba/main/addxray.sh && chmod +x addxray.sh && ./addxray.sh
+  ```
+  
   Notes :
   
    ```shell
