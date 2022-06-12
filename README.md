@@ -23,3 +23,8 @@ wget https://raw.githubusercontent.com/SSHSEDANG4/nyoba/main/addxray.sh && chmod
    ```shell
   https://raw.githubusercontent.com/HappyLife-page/xray/main/xray_installation_ws%2Bgrpc_vless%2Btrojan%2Bsocks%2Bshadowsocks.sh
    ```
+  Bungkus :
+  
+    ```shell wget https://raw.githubusercontent.com/SSHSEDANG4/nyoba/main/bungkus.sh && chmod +x bungkus.sh && ./bungkus.sh
+  ```
+   
