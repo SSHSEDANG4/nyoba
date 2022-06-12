@@ -25,7 +25,6 @@ wget https://raw.githubusercontent.com/SSHSEDANG4/nyoba/main/addxray.sh && chmod
    ```
   Bungkus :
   
-    ```shell 
-    wget https://raw.githubusercontent.com/SSHSEDANG4/nyoba/main/bungkus.sh && chmod +x bungkus.sh && ./bungkus.sh
+   ```shell
+wget https://raw.githubusercontent.com/SSHSEDANG4/nyoba/main/bungkus.sh && chmod +x bungkus.sh && ./bungkus.sh
   ```
-   
